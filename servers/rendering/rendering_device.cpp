@@ -4425,7 +4425,7 @@ RID RenderingDevice::uniform_set_create(const VectorView<RD::Uniform> &p_uniform
 				}
 			} break;
 			case UNIFORM_TYPE_SAMPLER_WITH_TEXTURE: {
-				if (uniform.get_id_count() != (uint32_t)set_uniform.length * 2) {
+				if (uniform.get_id_count() != (uint32_t)set_uniform.length * 2 && set_uniform.length != 0) {
 					if (set_uniform.length > 1) {
 						ERR_FAIL_V_MSG(RID(), "SamplerTexture (binding: " + itos(uniform.binding) + ") is an array of (" + itos(set_uniform.length) + ") sampler&texture elements, so it should provided twice the amount of IDs (sampler,texture pairs) to satisfy it (IDs provided: " + itos(uniform.get_id_count()) + ").");
 					} else {
@@ -4481,7 +4481,7 @@ RID RenderingDevice::uniform_set_create(const VectorView<RD::Uniform> &p_uniform
 				}
 			} break;
 			case UNIFORM_TYPE_TEXTURE: {
-				if (uniform.get_id_count() != (uint32_t)set_uniform.length) {
+				if (uniform.get_id_count() != (uint32_t)set_uniform.length && set_uniform.length != 0) {
 					if (set_uniform.length > 1) {
 						ERR_FAIL_V_MSG(RID(), "Texture (binding: " + itos(uniform.binding) + ") is an array of (" + itos(set_uniform.length) + ") textures, so it should be provided equal number of texture IDs to satisfy it (IDs provided: " + itos(uniform.get_id_count()) + ").");
 					} else {
